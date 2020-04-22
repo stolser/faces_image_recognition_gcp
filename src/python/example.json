@@ -1,0 +1,36 @@
+'window_start:TIMESTAMP, window_end:TIMESTAMP, emotion:STRING, count:INTEGER, faces:RECORD'
+
+[
+  {
+    "mode": "REQUIRED",
+    "name": "",
+    "type": ""
+  },
+  {
+    "fields": [
+      {
+        "name": "face_detection_confidence",
+        "type": "FLOAT"
+      },
+      {
+        "name": "emotion",
+        "type": "STRING"
+      },
+      {
+        "name": "likelihood",
+        "type": "INTEGER"
+      },
+      {
+        "name": "file_path",
+        "type": "STRING"
+      },
+      {
+        "name": "ts_seconds",
+        "type": "INTEGER"
+      }
+    ],
+    "mode": "REPEATED",
+    "name": "",
+    "type": ""
+  }
+]

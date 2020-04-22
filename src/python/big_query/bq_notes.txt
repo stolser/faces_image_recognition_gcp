@@ -1,0 +1,11 @@
+=== CREATE TABLE ===
+https://cloud.google.com/bigquery/docs/tables
+
+View the schema of an existing table in JSON format by entering the following command:
+bq show --format=prettyjson <project_id>:<dataset>.<table>
+
+Example:
+./bq show --format=prettyjson professionaldataengineercourse:image_vision_api_info.images_with_faces
+
+
+

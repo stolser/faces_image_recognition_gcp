@@ -1,0 +1,44 @@
+[
+  {
+    "mode": "REQUIRED",
+    "name": "file_path",
+    "type": "STRING"
+  },
+  {
+    "mode": "REQUIRED",
+    "name": "faces_number",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "REQUIRED",
+    "name": "upload_ts",
+    "type": "FLOAT"
+  },
+  {
+    "fields": [
+      {
+        "name": "face_detection_confidence",
+        "type": "FLOAT"
+      },
+      {
+        "name": "joy_likelihood",
+        "type": "INTEGER"
+      },
+      {
+        "name": "surprise_likelihood",
+        "type": "INTEGER"
+      },
+      {
+        "name": "anger_likelihood",
+        "type": "INTEGER"
+      },
+      {
+        "name": "sorrow_likelihood",
+        "type": "INTEGER"
+      }
+    ],
+    "mode": "REPEATED",
+    "name": "faces_info",
+    "type": "RECORD"
+  }
+]
