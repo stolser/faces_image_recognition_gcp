@@ -51,12 +51,6 @@ def process_images_with_faces_in_storage(event, context):
         anger_likelihood = face.anger_likelihood
         sorrow_likelihood = face.sorrow_likelihood
 
-        print('face confidence: {}'.format(face_detection_confidence))
-        print('joy likelihood: {}'.format(likelihood_names[joy_likelihood]))
-        print('surprise likelihood: {}'.format(likelihood_names[surprise_likelihood]))
-        print('anger likelihood: {}'.format(likelihood_names[anger_likelihood]))
-        print('sorrow likelihood: {}'.format(likelihood_names[sorrow_likelihood]))
-
         bq_faces_info.append({
             "face_detection_confidence": face_detection_confidence,
             "joy_likelihood": joy_likelihood,
@@ -74,6 +68,9 @@ def process_images_with_faces_in_storage(event, context):
             "file_path": file_path,
             "upload_ts": upload_ts
         })
+
+    print("bq_faces_info = {}".format(bq_faces_info))
+    print("pubsub_faces_info = {}".format(pubsub_faces_info))
 
     # Insert data into BigQuery
     bq_client = bigquery.Client()
