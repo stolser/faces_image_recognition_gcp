@@ -32,6 +32,7 @@ and retrieve info about the possible faces;
 
 ### Cloud Functions
 The Cloud Function is deployed from a Cloud Source Repository:
+
 [![alt text](https://i.postimg.cc/sBF3R109/function-deployment-repo.png)](https://postimg.cc/sBF3R109)
 
 ### Dataflow
@@ -39,6 +40,9 @@ The Cloud Function is deployed from a Cloud Source Repository:
 
 ### BigQuery
 BigQuery table 'images_with_faces' results:
+
 [![alt text](https://i.postimg.cc/DJ6hs6fB/images-with-faces-results.png)](https://postimg.cc/DJ6hs6fB)
+
 BigQuery table 'faces_by_emotion_window' results:
+
 [![alt text](https://i.postimg.cc/xNd2PmcY/faces-by-emotion-window-results.png)](https://postimg.cc/xNd2PmcY)
