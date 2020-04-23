@@ -79,7 +79,8 @@ class FormatFaceInfoPerWindow(beam.DoFn):
 
 class FilterHighConfidenceFacesDoFn(beam.DoFn):
     def process(self, element):
-        if element['face_detection_confidence'] >= 0.7:
+        detection_confidence_threshold = 0.7
+        if element['face_detection_confidence'] >= detection_confidence_threshold:
             yield element
         else:
             return  # Return nothing
@@ -125,7 +126,7 @@ def run(argv=None):
     pubsub_input_topic = 'projects/professionaldataengineercourse/topics/faces_on_images'
 
     with beam.Pipeline(options=get_pipeline_options()) as pipeline:
-        logging.info("pipeline_options.input_topic = {}".format(pubsub_input_topic))
+        logging.info("pubsub_input_topic = {}".format(pubsub_input_topic))
 
         json_messages = \
             (pipeline
