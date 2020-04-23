@@ -145,7 +145,7 @@ def run(argv=None):
                 | 'WindowFaceInfo' >> beam.WindowInto(
                         FixedWindows(window_size_s, 0),
                         trigger=AfterWatermark(
-                            early=AfterAny(AfterCount(3), AfterProcessingTime(10)),
+                            early=AfterAny(AfterCount(5), AfterProcessingTime(10)),
                             late=AfterAll(AfterCount(2), AfterProcessingTime(20))),
                         allowed_lateness=allowed_lateness_s,
                         accumulation_mode=AccumulationMode.DISCARDING)

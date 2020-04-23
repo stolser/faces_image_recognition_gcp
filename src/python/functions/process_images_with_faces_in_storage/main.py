@@ -10,11 +10,8 @@ def process_images_with_faces_in_storage(event, context):
     """
 
     import os
-    import json
     import time
     from google.cloud import vision
-    from google.cloud import pubsub
-    from google.cloud import bigquery
 
     project_id = os.getenv("PROJECT_NAME")
     upload_ts = time.time()
@@ -69,27 +66,22 @@ def process_images_with_faces_in_storage(event, context):
             "upload_ts": upload_ts
         })
 
-    print("bq_faces_info = {}".format(bq_faces_info))
     print("pubsub_faces_info = {}".format(pubsub_faces_info))
 
-    # Insert data into BigQuery
-    bq_client = bigquery.Client()
-    # dataset_ref = bq_client.dataset('image_vision_api_info')
-    dataset_ref = bigquery.DatasetReference(project_id, "image_vision_api_info")
-    table_ref = dataset_ref.table('images_with_faces')
-    table = bq_client.get_table(table_ref)  # API call
+    insert_data_into_bq(bq_faces_info=bq_faces_info,
+                        faces_number=faces_number,
+                        file_path=file_path,
+                        project_id=project_id,
+                        upload_ts=upload_ts)
 
-    bq_rows_to_insert = [{
-        "upload_ts": upload_ts,
-        "faces_info": bq_faces_info,
-        "faces_number": faces_number,
-        "file_path": file_path,
-    }]
+    publish_face_info_to_pubsub(project_id=project_id,
+                                pubsub_faces_info=pubsub_faces_info)
 
-    print("bq_rows_to_insert = {}".format(bq_rows_to_insert))
-    errors = bq_client.insert_rows(table, bq_rows_to_insert)
 
-    # Publish faces info to Pub/Sub
+def publish_face_info_to_pubsub(project_id, pubsub_faces_info):
+    from google.cloud import pubsub
+    import json
+
     pubsub_publisher = pubsub.PublisherClient()
     topic_name = 'projects/{project_id}/topics/{topic}'.format(
         project_id=project_id,
@@ -106,3 +98,23 @@ def process_images_with_faces_in_storage(event, context):
         pubsub_publisher.publish(topic_name, message, source='storage')
 
     print("Sending to Pub/Sub is finished.")
+
+
+def insert_data_into_bq(bq_faces_info, faces_number, file_path, project_id, upload_ts):
+    from google.cloud import bigquery
+
+    bq_client = bigquery.Client()
+    # dataset_ref = bq_client.dataset('image_vision_api_info')
+    dataset_ref = bigquery.DatasetReference(project_id, "image_vision_api_info")
+    table_ref = dataset_ref.table('images_with_faces')
+    table = bq_client.get_table(table_ref)  # API call
+
+    bq_rows_to_insert = [{
+        "upload_ts": upload_ts,
+        "faces_info": bq_faces_info,
+        "faces_number": faces_number,
+        "file_path": file_path,
+    }]
+
+    print("bq_rows_to_insert = {}".format(bq_rows_to_insert))
+    errors = bq_client.insert_rows(table, bq_rows_to_insert)
