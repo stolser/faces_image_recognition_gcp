@@ -1,6 +1,6 @@
 ## Faces Image recognition on GCP
 ### Architecture overview
-![alt text](readme_images/faceImageRecognitionOnGCPArchitecture.jpg)
+![alt text](readme_images/gcp_pipeline_architecture.jpg)
 
 ### Data processing pipeline
 1. An image is uploaded to Cloud Storage.
