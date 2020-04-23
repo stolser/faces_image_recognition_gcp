@@ -1,6 +1,6 @@
 ## Faces Image recognition on GCP
 ### Architecture overview
-![alt text](readme_images/gcp_pipeline_architecture.jpg)
+[![alt text](https://i.postimg.cc/G93dRWzN/gcp-pipeline-architecture.jpg)](https://postimg.cc/G93dRWzN)
 
 ### Data processing pipeline
 1. An image is uploaded to Cloud Storage.
@@ -32,13 +32,13 @@ and retrieve info about the possible faces;
 
 ### Cloud Functions
 The Cloud Function is deployed from a Cloud Source Repository:
-![alt text](readme_images/function_deployment_repo.png)
+[![alt text](https://i.postimg.cc/sBF3R109/function-deployment-repo.png)](https://postimg.cc/sBF3R109)
 
 ### Dataflow
-![alt text](readme_images/dataflow_job_graph_01.png) ![alt text](readme_images/dataflow_job_graph_02.png)
+[![alt text](https://i.postimg.cc/Cz1hG3qD/dataflow-job-graph-01.png)](https://postimg.cc/Cz1hG3qD) [![alt text](https://i.postimg.cc/k6q9BzC2/dataflow-job-graph-02.png)](https://postimg.cc/k6q9BzC2)
 
 ### BigQuery
 BigQuery table 'images_with_faces' results:
-![alt text](readme_images/images_with_faces_results.png)
+[![alt text](https://i.postimg.cc/DJ6hs6fB/images-with-faces-results.png)](https://postimg.cc/DJ6hs6fB)
 BigQuery table 'faces_by_emotion_window' results:
-![alt text](readme_images/faces_by_emotion_window_results.png)
+[![alt text](https://i.postimg.cc/xNd2PmcY/faces-by-emotion-window-results.png)](https://postimg.cc/xNd2PmcY)
