@@ -17,22 +17,27 @@
   {
     "fields": [
       {
+        "mode": "NULLABLE",
         "name": "face_detection_confidence",
         "type": "FLOAT"
       },
       {
+        "mode": "NULLABLE",
         "name": "joy_likelihood",
         "type": "INTEGER"
       },
       {
+        "mode": "NULLABLE",
         "name": "surprise_likelihood",
         "type": "INTEGER"
       },
       {
+        "mode": "NULLABLE",
         "name": "anger_likelihood",
         "type": "INTEGER"
       },
       {
+        "mode": "NULLABLE",
         "name": "sorrow_likelihood",
         "type": "INTEGER"
       }
